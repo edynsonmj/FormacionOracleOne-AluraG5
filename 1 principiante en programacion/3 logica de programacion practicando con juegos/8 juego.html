@@ -1,0 +1,72 @@
+<canvas width="600" height="400">
+</canvas>
+<script>
+    //obtener el canvas.
+    var pantalla = document.querySelector("canvas");
+    //obtener el contexto del canvas en 2 dimensiones.
+    //servira para dibujar.
+    var pincel = pantalla.getContext("2d");
+
+    let radio = 10;
+    let dirreccionDerecha = true;
+    let xAleatorio;
+    let yAleatorio;
+    
+    //define el color del que se pintara.
+    pincel.fillStyle = "lightgray";
+    //rectangulo
+    pincel.fillRect(0,0,600,400);
+
+    onclick = disparar;
+
+    //las funciones dentro de un funcion no deben llevar parentesis
+    setInterval(actualizarPantalla,1000);
+    //diseniarCircunferencia(20,20,10)
+    
+    
+    //FUNCIONES
+
+    //evento es generado automaticamente por el navegador con onclic, no es necesario pasar su parametro.
+    function diseniarCircunferencia(x,y,radio, color){
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x,y,radio,0,2*Math.PI);
+        pincel.fill();
+    }
+
+    function diseniarObjetivo(x,y){
+        diseniarCircunferencia(x,y,radio+20,"red");
+        diseniarCircunferencia(x,y,radio+10,"white");
+        diseniarCircunferencia(x,y,radio,"red");
+    }
+
+    function limpiarPantalla(){
+        pincel.clearRect(0,0,600,400);
+        pincel.fillStyle = "lightgray";
+        pincel.fillRect(0,0,600,400);
+    }
+
+    function sortearPosicion(maximo){
+        return Math.floor(Math.random()*maximo);
+    }
+    function actualizarPantalla(){
+        limpiarPantalla();
+        xAleatorio = sortearPosicion(600);
+        yAleatorio = sortearPosicion(400);
+        diseniarObjetivo(xAleatorio, yAleatorio);
+    }
+    function disparar(evento){
+        let x = evento.pageX - pantalla.offsetLeft;
+        let y = evento.pageY - pantalla.offsetTop;
+        console.log("verificando: " + x +","+ y);
+        if(
+            (x < xAleatorio + radio) &&
+            (x > xAleatorio - radio) &&
+            (y < yAleatorio + radio) &&
+            (y > yAleatorio - radio)
+        ){
+            alert("tiro certero");
+        }
+    }
+
+</script>

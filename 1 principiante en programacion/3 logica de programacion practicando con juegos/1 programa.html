@@ -1,0 +1,33 @@
+<canvas width="600" height="400">
+</canvas>
+<script>
+    //obtener el canvas.
+    var pantalla = document.querySelector("canvas");
+    //obtener el contexto del canvas en 2 dimensiones.
+    //servira para dibujar.
+    var pincel = pantalla.getContext("2d");
+    
+    //define el color del que se pintara.
+    pincel.fillStyle = "lightgray";
+    //rectangulo
+    pincel.fillRect(0,0,600,400);
+
+    pincel.fillStyle = "green";
+    pincel.fillRect(0,0,200,400);
+
+    pincel.fillStyle = "red";
+    pincel.fillRect(400,0,200,400);
+
+    pincel.fillStyle = "yellow";
+    //para elementos diferentes a rectangulos, se crea una nueva ruta.
+    pincel.beginPath();
+    pincel.moveTo(300,200);
+    pincel.lineTo(200,400);
+    pincel.lineTo(400,400);
+    pincel.fill();
+
+    pincel.fillStyle = "blue";
+    pincel.beginPath();
+    pincel.arc(300,200,60,0,2*3.14);
+    pincel.fill();
+</script>

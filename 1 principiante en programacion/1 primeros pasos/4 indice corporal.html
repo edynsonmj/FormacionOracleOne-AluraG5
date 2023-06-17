@@ -1,0 +1,23 @@
+<meta charset="UTF-8">
+
+<h1>Programa IMC</h1>
+
+<script>
+
+    var peso = 55;
+    var altura = 1.68;
+
+    imprimir("el indice de masa corporal es :"+calcularIMC(altura, peso));
+
+    function calcularIMC(altura, peso){
+        return imc = peso/(altura*altura);
+    }
+
+    function imprimir(texto){
+        document.write(texto);
+    }
+
+    function saltarLinea(cantidadSaltos){
+        imprimir("<br>");
+    }
+</script>

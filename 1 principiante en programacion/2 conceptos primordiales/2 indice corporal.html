@@ -1,0 +1,41 @@
+<meta charset="UTF-8">
+
+<h1>Programa IMC</h1>
+
+<script>
+
+    var nombre = prompt("informe su nombre");
+    var peso = parseFloat(prompt("informe su peso"));
+    var altura = parseFloat(prompt("informe su altura"));
+
+    var IMC = calcularIMC(altura,peso);
+    imprimir(nombre + "su indice de masa corporal es " + IMC +" el cual es considerado como ");
+
+    if(IMC < 18.5){
+        imprimir("Insuficiencia ponderal");
+    }
+
+    if(IMC >= 18.5 && IMC < 25){
+        imprimir("Intervalo normal");
+    }
+
+    if(IMC >= 25 && IMC < 30){
+        imprimir("preobesidad");
+    }
+
+    if(IMC >= 30){
+        imprimir("Obesidad");
+    }
+
+    function calcularIMC(altura, peso){
+        return imc = peso/(altura*altura);
+    }
+
+    function imprimir(texto){
+        document.write(texto);
+    }
+
+    function saltarLinea(cantidadSaltos){
+        imprimir("<br>");
+    }
+</script>

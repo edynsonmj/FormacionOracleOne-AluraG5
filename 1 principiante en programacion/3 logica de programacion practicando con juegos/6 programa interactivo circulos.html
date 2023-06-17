@@ -1,0 +1,43 @@
+<canvas width="600" height="400">
+</canvas>
+<script>
+    //obtener el canvas.
+    var pantalla = document.querySelector("canvas");
+    //obtener el contexto del canvas en 2 dimensiones.
+    //servira para dibujar.
+    var pincel = pantalla.getContext("2d");
+    
+    //define el color del que se pintara.
+    pincel.fillStyle = "lightgray";
+    //rectangulo
+    pincel.fillRect(0,0,600,400);
+
+    let colores = ["red", "blue", "green"];
+    let selectorColor = 0;
+
+    //no usar parentesis al llamar la funcion en onclic, evita que se ejecute inmediatamente.
+    pantalla.onclick = dibujarCirculo;
+
+    pantalla.oncontextmenu = alterarColor;
+
+    //evento es generado automaticamente por el navegador con onclic, no es necesario pasar su parametro.
+    function dibujarCirculo(evento){
+        let x = evento.pageX - pantalla.offsetLeft;
+        let y = evento.pageY - pantalla.offsetTop;
+
+        pincel.fillStyle = colores[selectorColor];
+        pincel.beginPath();
+        pincel.arc(x,y,10,0,2*3.14);
+        pincel.fill();
+        console.log("["+x+","+y+"]");
+    }
+
+    function alterarColor(){
+        selectorColor++;
+        if(selectorColor>2){
+            selectorColor=0;
+        }
+        console.log("color actual: "+colores[selectorColor]);
+    }
+
+</script>

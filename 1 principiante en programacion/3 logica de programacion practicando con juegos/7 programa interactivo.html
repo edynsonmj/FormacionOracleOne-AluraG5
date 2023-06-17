@@ -1,0 +1,51 @@
+<canvas width="600" height="400">
+</canvas>
+<script>
+    //obtener el canvas.
+    var pantalla = document.querySelector("canvas");
+    //obtener el contexto del canvas en 2 dimensiones.
+    //servira para dibujar.
+    var pincel = pantalla.getContext("2d");
+
+    let x = 0;
+    dirreccionDerecha = true;
+    
+    //define el color del que se pintara.
+    pincel.fillStyle = "lightgray";
+    //rectangulo
+    pincel.fillRect(0,0,600,400);
+
+    //las funciones dentro de un funcion no deben llevar parentesis
+    setInterval(actualizarPantalla,10);
+    //diseniarCircunferencia(20,20,10)
+    
+    //evento es generado automaticamente por el navegador con onclic, no es necesario pasar su parametro.
+    function diseniarCircunferencia(x,y,radio){
+        pincel.fillStyle = "blue";
+        pincel.beginPath();
+        pincel.arc(x,y,radio,0,2*Math.PI);
+        pincel.fill();
+    }
+
+    function limpiarPantalla(){
+        pincel.clearRect(0,0,600,400);
+    }
+
+    function actualizarPantalla(){
+        limpiarPantalla();
+        diseniarCircunferencia(x,20,10);
+        console.log(x);
+        if(dirreccionDerecha){
+            x++;
+            if(x==600){
+                dirreccionDerecha=false;
+            }
+        }else{
+            x--;
+            if(x==0){
+                dirreccionDerecha=true;
+            }
+        }
+    }
+
+</script>
