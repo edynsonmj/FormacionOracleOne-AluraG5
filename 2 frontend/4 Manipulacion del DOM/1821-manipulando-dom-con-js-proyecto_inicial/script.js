@@ -1,5 +1,6 @@
+import checkComplete from "./components/checkComplete.js";
+import deleteIcon from "./components/deleteIcon.js";
 (() => {
-
   const btn = document.querySelector("[data-from-btn]");
 
   const createTask = (evento) => {
@@ -28,22 +29,11 @@
     taskContent.appendChild(titleTask);
     //agregar contendio a li, task
     task.appendChild(taskContent);
+    //agregar boton eliminar
+    task.appendChild(deleteIcon());
     //agregar li (task) a la lista ul
     list.appendChild(task);
   }
 
   btn.addEventListener("click", createTask)
-
-  const checkComplete = () => {
-    const i = document.createElement("i");
-    i.classList.add("far", "fa-check-square", "icon");
-    i.addEventListener("click", completeTask);
-    return i;
-  }
-  const completeTask = (evento) => {
-    const element = evento.target
-    element.classList.toggle("fas");
-    element.classList.toggle("completeIcon");
-    element.classList.toggle("far");
-  }
 })();
